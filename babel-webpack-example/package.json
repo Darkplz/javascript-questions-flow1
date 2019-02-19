@@ -1,0 +1,23 @@
+{
+  "name": "babel-webpack-example",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "start": "nodemon --exec babel-node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jonas Grønbek",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.3.3",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "nodemon": "^1.18.10",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11"
+  }
+}
