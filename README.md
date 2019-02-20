@@ -26,13 +26,26 @@
 
 **Explain about the Event Loop in Node.js**
 
-> TODO figure stuff out
+```js
+let fs = require("fs");
+let eventNum = 0;
+fs.watch("file.txt", (event, filename) => {
+  console.log("event: " + event + "filename: " + filename);
+});
+fs.watch("file2.txt", (event, filename) => {
+  console.log("event: " + event + "filename: " + filename);
+});
+
+console.log("watcher started...");
+```
+
+> The event loop in Node.js is managing the order of events in Node.js at runtime. Node.js event loop initiates its variables, declares functions and then simply waits for the event to occur. Events are non-blocking, that means when an event is being executed, it will be executed without being interrupted. Therefore thread-safe programming in Node.js is quite simple, since multithreading issues like a racecondition is not an issue in Node due to it's non-blocking nature. Above is an example of a watcher file that would be considered 'dangerous' if not Node.js non-blocking nature.
 
 **Explain (some) of the purposes with the tools Babel and WebPack, using examples from the exercises**
 
 > Babel is a transpiler, primarely used for transpiling JavaScript to older EcmaScript versions for unsupported browsers.
 > WebPack is a bundler for JavaScript, it can bundle together dependencies to single files.
-> TODO - link a file in github
+
 > **Explain the purpose of “use strict” and Linters, exemplified with ESLint**
 > "use strict" is a feature to mimic a statcily typed language in JavaScript, to expand on this feature you can use EsLint is a customizable linter for JS
 
@@ -59,8 +72,8 @@ a = "I'm initialized";
 
 **this in JavaScript and how it differs from what we know from Java/.net.**
 
-> **Function Closures and the JavaScript Module Pattern**
->
+**Function Closures and the JavaScript Module Pattern**
+
 > **Immediately-Invoked Function Expressions (IIFE)**
 >
 > **JavaScripts Prototype**
@@ -77,15 +90,15 @@ a = "I'm initialized";
 
 Provide examples and explain the es2015 features: let, arrow functions, this, rest parameters, de-structuring assignments, maps/sets etc.
 
-> Explain and demonstrate how es2015 supports modules (import and export) similar to what is offered by NodeJS.
->
-> Provide an example of ES6 inheritance and reflect over the differences between Inheritance in Java and in ES6.
+**Explain and demonstrate how es2015 supports modules (import and export) similar to what is offered by NodeJS.**
+
+> **Provide an example of ES6 inheritance and reflect over the differences between Inheritance in Java and in ES6.**
 >
 > Provide examples with es-next, running in a browser, using Babel and Webpack
 >
-> Provide a number of examples to demonstrate the benefits of using TypeScript, including, types, interfaces, classes and generics
+> **Provide a number of examples to demonstrate the benefits of using TypeScript, including, types, interfaces, classes and generics**
 >
-> Explain the ECMAScript Proposal Process for how new features are added to the language (the TC39 Process)
+> **Explain the ECMAScript Proposal Process for how new features are added to the language (the TC39 Process)**
 
 ---
 
@@ -93,12 +106,12 @@ Provide examples and explain the es2015 features: let, arrow functions, this, re
 
 Explain about promises in ES-6 including, the problems they solve, a quick explanation of the Promise API and:
 
-> Example(s) that demonstrate how to avoid the callback hell (“Pyramid of Doom")
+**Example(s) that demonstrate how to avoid the callback hell (“Pyramid of Doom")**
+
+> **Example(s) that demonstrate how to execute asynchronous (promise-based) code in serial or parallel**
 >
-> Example(s) that demonstrate how to execute asynchronous (promise-based) code in serial or parallel
+> **Example(s) that demonstrate how to implement our own promise-solutions.**
 >
-> Example(s) that demonstrate how to implement our own promise-solutions.
+> **Example(s) that demonstrate error handling with promises**
 >
-> Example(s) that demonstrate error handling with promises
->
-> Explain about JavaScripts async/await, how it relates to promises and reasons to use it compared to the plain promise API.
+> **Explain about JavaScripts async/await, how it relates to promises and reasons to use it compared to the plain promise API.**
