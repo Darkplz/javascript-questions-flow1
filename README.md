@@ -15,7 +15,7 @@
 
 **Explain the two strategies for improving JavaScript: ES6 (es2015) + ES7, versus Typescript. What does it require to use these technologies: In our backend with Node and in (many different) Browsers**
 
-> First let me exmplain what EcmaScript and TypeScript is:
+> First let me explain what EcmaScript and TypeScript is:
 > EcmaScript is a standard that JavaSCript is build upon.
 > TypeScript is a superset of JavaScript, the primary differences being that TypeScript is statically typed, object-oriented and have interfaces. TypeScript is transpiled to JavaScript and it is primarely used for larger applications both serverside and clientside, however it can be used as a substitute for JavaScript at all times.  
 >  To use these technologies in either node or browsers, it is required that the engine supports the ecmascript version. This however can be worked around by using technologies like babel.
@@ -71,6 +71,26 @@ a = "I'm initialized";
 ```
 
 **this in JavaScript and how it differs from what we know from Java/.net.**
+
+> Below is the usage of a ´´´´this´´´ keyword in Kotlin. Where ´´´´this´´´ simply refers to the current object instantiation within the
+> scope where ´´´´this´´´ is being used.
+> ´´´kotlin
+> class A(val a: String, val b: String){
+
+    fun printProperties() {
+        print("a: ${this.a}, b: ${this.b}");
+    }
+
+}
+´´´
+Below is the usage of ´´´this´´´ keyword in JavaScript. ´´´´this´´´ in JavaScript is a bit more tricky. The object that ´´´´this´´´ refers changes every time execution context is changed.
+
+- In a method, this refers to the owner object.
+- Alone, this refers to the global object.
+- In a function, this refers to the global object.
+- In a function, in strict mode, this is undefined.
+- In an event, this refers to the element that received the event.
+- Methods like call(), and apply() can refer this to any object.
 
 **Function Closures and the JavaScript Module Pattern**
 
