@@ -88,8 +88,8 @@ Below is the usage of ´´´this´´´ keyword in JavaScript. ´´´´this´´´
 ```js
 var person = {
   firstName: "John",
-  lastName : "Doe",
-  fullName : function() {
+  lastName: "Doe",
+  fullName: function() {
     return this.firstName + " " + this.lastName;
   }
 };
@@ -104,8 +104,30 @@ var person = {
 
 **Function Closures and the JavaScript Module Pattern**
 
+> Global variables live as long as your application (your window / your web page) lives.  
+> Local variables have short lives. They are created when the function is invoked, and deleted when the function is finished.
+> The dilemma Function Closures solves, is when you want a functions to access a variable but only specific functions.
+> You can achieve this by encapsulating the variable in a self invoking function, assigning a variable by returning a object
+> with the functions or the single function using the variable.
+
+```js
+const count = (() => {
+  let counter = 0;
+  return {
+    add: () => {
+      counter += 1;
+      return counter;
+    },
+    get: () => {
+      return counter;
+    }
+  };
+})();
+```
+
 > **Immediately-Invoked Function Expressions (IIFE)**
->
+> An immediately-Inovked function expressions is exactly as the name suggests, a function that invokes itself on creation which acts 
+> as an expression. the IIFE is considered an expression due to the parenthesis around the function. IIFE is a way to execute functions > immediately, as soon as they are created. 
 > **JavaScripts Prototype**
 >
 > **User-defined Callback Functions (writing your own functions that take a callback)**
@@ -145,4 +167,7 @@ Explain about promises in ES-6 including, the problems they solve, a quick expla
 > **Example(s) that demonstrate error handling with promises**
 >
 > **Explain about JavaScripts async/await, how it relates to promises and reasons to use it compared to the plain promise API.**
-````
+
+```
+
+```
