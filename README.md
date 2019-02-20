@@ -74,15 +74,13 @@ a = "I'm initialized";
 
 > Below is the usage of a ´´´´this´´´ keyword in Kotlin. Where ´´´´this´´´ simply refers to the current object instantiation within the
 > scope where ´´´´this´´´ is being used.
-> ´´´kotlin
-> class A(val a: String, val b: String){
-
-    fun printProperties() {
+```kotlin
+class A(val a: String, val b: String){ 
+fun printProperties() {
         print("a: ${this.a}, b: ${this.b}");
     }
-
 }
-´´´
+```
 Below is the usage of ´´´this´´´ keyword in JavaScript. ´´´´this´´´ in JavaScript is a bit more tricky. The object that ´´´´this´´´ refers changes every time execution context is changed.
 
 - In a method, this refers to the owner object.
