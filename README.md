@@ -74,14 +74,26 @@ a = "I'm initialized";
 
 > Below is the usage of a ´´´´this´´´ keyword in Kotlin. Where ´´´´this´´´ simply refers to the current object instantiation within the
 > scope where ´´´´this´´´ is being used.
+
 ```kotlin
-class A(val a: String, val b: String){ 
+class A(val a: String, val b: String){
 fun printProperties() {
         print("a: ${this.a}, b: ${this.b}");
     }
 }
 ```
-Below is the usage of ´´´this´´´ keyword in JavaScript. ´´´´this´´´ in JavaScript is a bit more tricky. The object that ´´´´this´´´ refers changes every time execution context is changed.
+
+Below is the usage of ´´´this´´´ keyword in JavaScript. ´´´´this´´´ in JavaScript is a bit more tricky. The object that ´´´´this´´´ refers changes every time execution context is changed. Since person is the owner object, this refers to the instantiation of person.
+
+```js
+var person = {
+  firstName: "John",
+  lastName : "Doe",
+  fullName : function() {
+    return this.firstName + " " + this.lastName;
+  }
+};
+```
 
 - In a method, this refers to the owner object.
 - Alone, this refers to the global object.
@@ -133,3 +145,4 @@ Explain about promises in ES-6 including, the problems they solve, a quick expla
 > **Example(s) that demonstrate error handling with promises**
 >
 > **Explain about JavaScripts async/await, how it relates to promises and reasons to use it compared to the plain promise API.**
+````
