@@ -6,7 +6,7 @@
 
 **Explain the differences between Java and JavaScript. You should include both topics related to the fact that Java is a compiled language and JavaScript a scripted language, and general differences in language features.**
 
-> The are many big differences to Java and JavaScript, the primary being:
+The are many big differences to Java and JavaScript, the primary being:
 
 - Java is interpreted by java interpreter/JIT compiler after being compiled to bytecode by javac. JavaScript on the other hand is purely interpreted and is often executed in a browser or by Node.
 - Java is statically and strongly typed language while JavaScript is dynamically and weakly typed language.
@@ -15,26 +15,26 @@
 
 **Explain the two strategies for improving JavaScript: ES6 (es2015) + ES7, versus Typescript. What does it require to use these technologies: In our backend with Node and in (many different) Browsers**
 
-> First let me explain what EcmaScript and TypeScript is:
-> EcmaScript is a standard that JavaSCript is build upon.
-> TypeScript is a superset of JavaScript, the primary differences being that TypeScript is statically typed, object-oriented and have interfaces. TypeScript is transpiled to JavaScript and it is primarely used for larger applications both serverside and clientside, however it can be used as a substitute for JavaScript at all times.  
->  To use these technologies in either node or browsers, it is required that the engine supports the ecmascript version. This however can be worked around by using technologies like babel.
+First let me explain what EcmaScript and TypeScript is:
+EcmaScript is a standard that JavaSCript is build upon.
+TypeScript is a superset of JavaScript, the primary differences being that TypeScript is statically typed, object-oriented and have interfaces. TypeScript is transpiled to JavaScript and it is primarely used for larger applications both serverside and clientside, however it can be used as a substitute for JavaScript at all times.  
+ To use these technologies in either node or browsers, it is required that the engine supports the ecmascript version. This however can be worked around by using technologies like babel.
 
 **Explain generally about node.js, when it “makes sense” and npm, and how it “fits” into the node echo system.**
 
-> Node.js is a runtime environment for JavaScript, NPM is a package manager for Node. It makes sense to use it whenever you want to run JavaScript outside of a browser. It could be a server or an application.
+Node.js is a runtime environment for JavaScript, NPM is a package manager for Node. It makes sense to use it whenever you want to run JavaScript outside of a browser. It could be a server or an application.
 
 **Explain about the Event Loop in Node.js**
 
-> The event loop in Node.js is managing the order of events in Node.js at runtime. Node.js event loop initiates its variables, declares functions and then simply waits for the event to occur. Events are non-blocking, that means when an event is being executed, it will be executed without being interrupted. Therefore thread-safe programming in Node.js is quite simple, since multithreading issues like a racecondition is not an issue in Node due to it's non-blocking nature. Below is an example of a watcher file that would be considered 'dangerous' if not Node.js non-blocking nature.
+The event loop in Node.js is managing the order of events in Node.js at runtime. Node.js event loop initiates its variables, declares functions and then simply waits for the event to occur. Events are non-blocking, that means when an event is being executed, it will be executed without being interrupted. Therefore thread-safe programming in Node.js is quite simple, since multithreading issues like a racecondition is not an issue in Node due to it's non-blocking nature. Below is an example of a watcher file that would be considered 'dangerous' if not Node.js non-blocking nature.
 
 ```js
 let fs = require("fs");
 let eventNum = 0;
-fs.watch("file.txt", (event, filename) => {
+fs.watch("file.txt", (event, filename) = {
   console.log("event: " + event + "filename: " + filename);
 });
-fs.watch("file2.txt", (event, filename) => {
+fs.watch("file2.txt", (event, filename) = {
   console.log("event: " + event + "filename: " + filename);
 });
 
@@ -43,11 +43,11 @@ console.log("watcher started...");
 
 **Explain (some) of the purposes with the tools Babel and WebPack, using examples from the exercises**
 
-> Babel is a transpiler, primarely used for transpiling JavaScript to older EcmaScript versions for unsupported browsers.
-> WebPack is a bundler for JavaScript, it can bundle together dependencies to a single file.
+Babel is a transpiler, primarely used for transpiling JavaScript to older EcmaScript versions for unsupported browsers.
+WebPack is a bundler for JavaScript, it can bundle together dependencies to a single file.
 
-> **Explain the purpose of “use strict” and Linters, exemplified with ESLint**
-> "use strict" is a feature to mimic a statcily typed language in JavaScript, to expand on this feature you can use EsLint is a customizable linter for JS
+**Explain the purpose of “use strict” and Linters, exemplified with ESLint**
+"use strict" is a feature to mimic a statcily typed language in JavaScript, to expand on this feature you can use EsLint is a customizable linter for JS
 
 ### Explain using sufficient code examples the following features in JavaScript.
 
@@ -58,9 +58,9 @@ console.log(a);
 var a = "I'm initialized";
 ```
 
-> the example above returns undefined, instead of an error. This is because of a behaviour called hoisting
-> Hoisting is JavaScript's default behavior of moving declarations to the top. So the exampled above
-> is executed like this
+the example above returns undefined, instead of an error. This is because of a behaviour called hoisting
+Hoisting is JavaScript's default behavior of moving declarations to the top. So the exampled above
+is executed like this
 
 ```js
 var a;
@@ -70,8 +70,8 @@ a = "I'm initialized";
 
 **this in JavaScript and how it differs from what we know from Java/.net.**
 
-> Below is the usage of a `this` keyword in Kotlin. Where `this` simply refers to the current object instantiation within the
-> scope where `this` is being used.
+Below is the usage of a `this` keyword in Kotlin. Where `this` simply refers to the current object instantiation within the
+scope where `this` is being used.
 
 ```kotlin
 class A(val a: String, val b: String){
@@ -102,30 +102,30 @@ var person = {
 
 **Function Closures and the JavaScript Module Pattern**
 
-> Global variables live as long as your application (your window / your web page) lives.  
-> Local variables have short lives. They are created when the function is invoked, and deleted when the function is finished.
-> The dilemma Function Closures solves, is when you want a functions to access a variable but only specific functions.
-> You can achieve this by encapsulating the variable in a self invoking function, assigning a variable by returning a object
-> with the functions or the single function using the variable.
+Global variables live as long as your application (your window / your web page) lives.  
+Local variables have short lives. They are created when the function is invoked, and deleted when the function is finished.
+The dilemma Function Closures solves, is when you want a functions to access a variable but only specific functions.
+You can achieve this by encapsulating the variable in a self invoking function, assigning a variable by returning a object
+with the functions or the single function using the variable.
 
 ```js
-const count = (() => {
+const count = (() = {
   let counter = 0;
   return {
-    add: () => {
+    add: () = {
       counter += 1;
       return counter;
     },
-    get: () => {
+    get: () = {
       return counter;
     }
   };
 })();
 ```
 
-> **Immediately-Invoked Function Expressions (IIFE)**
-> An immediately-Inovked function expressions is exactly as the name suggests, a function that invokes itself on creation which acts
-> as an expression. the IIFE is considered an expression due to the parenthesis around the function. IIFE is a way to execute functions > immediately, as soon as they are created.
+**Immediately-Invoked Function Expressions (IIFE)**
+An immediately-Inovked function expressions is exactly as the name suggests, a function that invokes itself on creation which acts
+as an expression. the IIFE is considered an expression due to the parenthesis around the function. IIFE is a way to execute functions immediately, as soon as they are created.
 
 ```js
 (function() {
@@ -133,19 +133,19 @@ const count = (() => {
 })();
 ```
 
-> **JavaScripts Prototype**
-> JavaScript is a prototype-based language, and not class based like java. The class keyword is introduced in ES2015, but is syntactical sugar, JavaScript remains prototype-based. When trying to access a property of an object, the property will not only be sought on the object but on the prototype of the object, the prototype of the prototype, and so on until either a property with a matching name is found or the end of the prototype chain is reached.
+**JavaScripts Prototype**
+JavaScript is a prototype-based language, and not class based like java. The class keyword is introduced in ES2015, but is syntactical sugar, JavaScript remains prototype-based. When trying to access a property of an object, the property will not only be sought on the object but on the prototype of the object, the prototype of the prototype, and so on until either a property with a matching name is found or the end of the prototype chain is reached.
 
 ```js
-Date.prototype.getDate = () => {
+Date.prototype.getDate = () = {
   console.log("no more dates, mwahaha");
 };
 ```
 
 Prototypes
 
-> **User-defined Callback Functions (writing your own functions that take a callback)**
-> A User-definde callback is when you pass in a callback function to a function to be executed at some point inside of it.
+**User-defined Callback Functions (writing your own functions that take a callback)**
+A User-definde callback is when you pass in a callback function to a function to be executed at some point inside of it.
 
 ```js
 function greeting(name) {
@@ -160,13 +160,13 @@ function processUserInput(callback) {
 processUserInput(greeting);
 ```
 
-> **Explain the methods map, filter and reduce**
-> All of the functions are methods defined in the Array.prototype and do different operations on an array.
+**Explain the methods map, filter and reduce**
+All of the functions are methods defined in the Array.prototype and do different operations on an array.
 
 - The map function iterates through the array performing an operation each iteration and returns it to a new array
 
 ```js
-let result = [1, 2, 3, 4, 5].map(c => {
+let result = [1, 2, 3, 4, 5].map(c = {
   return (c += 2);
 });
 
@@ -176,7 +176,7 @@ console.log(result); //returns [3,4,5,6,7]
 - the filter method iterates through the array and returns all iterations that passes the condition in a callback
 
 ```js
-let result = [1, 2, 3, 4, 5].filter(c => {
+let result = [1, 2, 3, 4, 5].filter(c = {
   return c < 3;
 });
 
@@ -193,8 +193,8 @@ var result = [10, 10, 10].reduce(function(sum, currentValue) {
 console.log(result); // returns 10000
 ```
 
-> **Provide examples of user-defined reusable modules implemented in Node.js**
-> A user-defined module is a module to be exported for later use in a Node environment.
+**Provide examples of user-defined reusable modules implemented in Node.js**
+A user-defined module is a module to be exported for later use in a Node environment.
 
 ```js
 exports.default = function getSquard(num) {
@@ -208,13 +208,13 @@ Provide examples and explain the es2015 features: let, arrow functions, this, re
 
 **Explain and demonstrate how es2015 supports modules (import and export) similar to what is offered by NodeJS.**
 
-> **Provide an example of ES6 inheritance and reflect over the differences between Inheritance in Java and in ES6.**
->
-> Provide examples with es-next, running in a browser, using Babel and Webpack
->
-> **Provide a number of examples to demonstrate the benefits of using TypeScript, including, types, interfaces, classes and generics**
->
-> **Explain the ECMAScript Proposal Process for how new features are added to the language (the TC39 Process)**
+**Provide an example of ES6 inheritance and reflect over the differences between Inheritance in Java and in ES6.**
+
+Provide examples with es-next, running in a browser, using Babel and Webpack
+
+**Provide a number of examples to demonstrate the benefits of using TypeScript, including, types, interfaces, classes and generics**
+
+**Explain the ECMAScript Proposal Process for how new features are added to the language (the TC39 Process)**
 
 ---
 
@@ -224,13 +224,13 @@ Explain about promises in ES-6 including, the problems they solve, a quick expla
 
 **Example(s) that demonstrate how to avoid the callback hell (“Pyramid of Doom")**
 
-> **Example(s) that demonstrate how to execute asynchronous (promise-based) code in serial or parallel**
->
-> **Example(s) that demonstrate how to implement our own promise-solutions.**
->
-> **Example(s) that demonstrate error handling with promises**
->
-> **Explain about JavaScripts async/await, how it relates to promises and reasons to use it compared to the plain promise API.**
+**Example(s) that demonstrate how to execute asynchronous (promise-based) code in serial or parallel**
+
+**Example(s) that demonstrate how to implement our own promise-solutions.**
+
+**Example(s) that demonstrate error handling with promises**
+
+**Explain about JavaScripts async/await, how it relates to promises and reasons to use it compared to the plain promise API.**
 
 ````
 
