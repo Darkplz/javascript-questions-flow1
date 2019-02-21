@@ -26,6 +26,8 @@
 
 **Explain about the Event Loop in Node.js**
 
+> The event loop in Node.js is managing the order of events in Node.js at runtime. Node.js event loop initiates its variables, declares functions and then simply waits for the event to occur. Events are non-blocking, that means when an event is being executed, it will be executed without being interrupted. Therefore thread-safe programming in Node.js is quite simple, since multithreading issues like a racecondition is not an issue in Node due to it's non-blocking nature. Below is an example of a watcher file that would be considered 'dangerous' if not Node.js non-blocking nature.
+
 ```js
 let fs = require("fs");
 let eventNum = 0;
@@ -39,12 +41,10 @@ fs.watch("file2.txt", (event, filename) => {
 console.log("watcher started...");
 ```
 
-> The event loop in Node.js is managing the order of events in Node.js at runtime. Node.js event loop initiates its variables, declares functions and then simply waits for the event to occur. Events are non-blocking, that means when an event is being executed, it will be executed without being interrupted. Therefore thread-safe programming in Node.js is quite simple, since multithreading issues like a racecondition is not an issue in Node due to it's non-blocking nature. Above is an example of a watcher file that would be considered 'dangerous' if not Node.js non-blocking nature.
-
 **Explain (some) of the purposes with the tools Babel and WebPack, using examples from the exercises**
 
 > Babel is a transpiler, primarely used for transpiling JavaScript to older EcmaScript versions for unsupported browsers.
-> WebPack is a bundler for JavaScript, it can bundle together dependencies to single files.
+> WebPack is a bundler for JavaScript, it can bundle together dependencies to a single file.
 
 > **Explain the purpose of “use strict” and Linters, exemplified with ESLint**
 > "use strict" is a feature to mimic a statcily typed language in JavaScript, to expand on this feature you can use EsLint is a customizable linter for JS
@@ -60,7 +60,7 @@ var a = "I'm initialized";
 
 > the example above returns undefined, instead of an error. This is because of a behaviour called hoisting
 > Hoisting is JavaScript's default behavior of moving declarations to the top. So the exampled above
-> Really looks like this
+> is executed like this
 
 ```js
 var a;
@@ -70,8 +70,8 @@ a = "I'm initialized";
 
 **this in JavaScript and how it differs from what we know from Java/.net.**
 
-> Below is the usage of a ´´´´this´´´ keyword in Kotlin. Where ´´´´this´´´ simply refers to the current object instantiation within the
-> scope where ´´´´this´´´ is being used.
+> Below is the usage of a `this` keyword in Kotlin. Where `this` simply refers to the current object instantiation within the
+> scope where `this` is being used.
 
 ```kotlin
 class A(val a: String, val b: String){
@@ -81,7 +81,7 @@ fun printProperties() {
 }
 ```
 
-Below is the usage of ´´´this´´´ keyword in JavaScript. ´´´´this´´´ in JavaScript is a bit more tricky. The object that ´´´´this´´´ refers changes every time execution context is changed. Since person is the owner object, this refers to the instantiation of person.
+Below is the usage of `this` keyword in JavaScript. `this` in JavaScript is a bit more tricky. The object that `this` refers changes every time execution context is changed. Since person is the owner object,s this refers to the instantiation of person.
 
 ```js
 var person = {
@@ -195,10 +195,11 @@ console.log(result); // returns 10000
 
 > **Provide examples of user-defined reusable modules implemented in Node.js**
 > A user-defined module is a module to be exported for later use in a Node environment.
+
 ```js
-exports.default = function getSquard(num){
-    return Math.pow(num, 2);
-}
+exports.default = function getSquard(num) {
+  return Math.pow(num, 2);
+};
 ```
 
 ### ES6,7,8... and TypeScript
