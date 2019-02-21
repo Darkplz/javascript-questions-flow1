@@ -49,8 +49,6 @@ console.log("watcher started...");
 > **Explain the purpose of “use strict” and Linters, exemplified with ESLint**
 > "use strict" is a feature to mimic a statcily typed language in JavaScript, to expand on this feature you can use EsLint is a customizable linter for JS
 
----
-
 ### Explain using sufficient code examples the following features in JavaScript.
 
 **Variable/function-Hoisting**
@@ -126,17 +124,82 @@ const count = (() => {
 ```
 
 > **Immediately-Invoked Function Expressions (IIFE)**
-> An immediately-Inovked function expressions is exactly as the name suggests, a function that invokes itself on creation which acts 
-> as an expression. the IIFE is considered an expression due to the parenthesis around the function. IIFE is a way to execute functions > immediately, as soon as they are created. 
-> **JavaScripts Prototype**
->
-> **User-defined Callback Functions (writing your own functions that take a callback)**
->
-> **Explain the methods map, filter and reduce**
->
-> **Provide examples of user-defined reusable modules implemented in Node.js**
+> An immediately-Inovked function expressions is exactly as the name suggests, a function that invokes itself on creation which acts
+> as an expression. the IIFE is considered an expression due to the parenthesis around the function. IIFE is a way to execute functions > immediately, as soon as they are created.
 
----
+```js
+(function() {
+  //logic
+})();
+```
+
+> **JavaScripts Prototype**
+> JavaScript is a prototype-based language, and not class based like java. The class keyword is introduced in ES2015, but is syntactical sugar, JavaScript remains prototype-based. When trying to access a property of an object, the property will not only be sought on the object but on the prototype of the object, the prototype of the prototype, and so on until either a property with a matching name is found or the end of the prototype chain is reached.
+
+```js
+Date.prototype.getDate = () => {
+  console.log("no more dates, mwahaha");
+};
+```
+
+Prototypes
+
+> **User-defined Callback Functions (writing your own functions that take a callback)**
+> A User-definde callback is when you pass in a callback function to a function to be executed at some point inside of it.
+
+```js
+function greeting(name) {
+  alert("Hello " + name);
+}
+
+function processUserInput(callback) {
+  var name = prompt("Please enter your name.");
+  callback(name);
+}
+
+processUserInput(greeting);
+```
+
+> **Explain the methods map, filter and reduce**
+> All of the functions are methods defined in the Array.prototype and do different operations on an array.
+
+- The map function iterates through the array performing an operation each iteration and returns it to a new array
+
+```js
+let result = [1, 2, 3, 4, 5].map(c => {
+  return (c += 2);
+});
+
+console.log(result); //returns [3,4,5,6,7]
+```
+
+- the filter method iterates through the array and returns all iterations that passes the condition in a callback
+
+```js
+let result = [1, 2, 3, 4, 5].filter(c => {
+  return c < 3;
+});
+
+console.log(result); //returns [1,2]
+```
+
+- the reduce method takes a callback that iterates through the array, returning an accumulated result. The first parameter of the callback is called the accumulator, and this is the variable to build upon and will be the result of the reduce method()
+
+```js
+var result = [10, 10, 10].reduce(function(sum, currentValue) {
+  return sum * currentValue;
+}, 10);
+
+console.log(result); // returns 10000
+```
+
+> **Provide examples of user-defined reusable modules implemented in Node.js**
+> A user-defined module is a module to be exported for later use in a Node environment.
+```js
+exports.default = function getSquard(num){
+    return Math.pow(num, 2);
+}
+```
 
 ### ES6,7,8... and TypeScript
 
@@ -168,6 +231,9 @@ Explain about promises in ES-6 including, the problems they solve, a quick expla
 >
 > **Explain about JavaScripts async/await, how it relates to promises and reasons to use it compared to the plain promise API.**
 
+````
+
 ```
 
 ```
+````
