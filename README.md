@@ -385,18 +385,104 @@ Instead, we need a way of capturing the type of the argument in such a way that 
 
 ### Callbacks, Promises and async/await
 
+## Explain briefly about callbacks, promises and async/await
+
 Callbacks can refer to two phenomena. Either it is simply when a funtion take in another function as a parameter(callback), or it could be used in a more specific context meaning a function passed into another function performing an asynchronous operation where the callback function defines what to do after the asynchronous operation is finished.
 
 A Promise object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value.
-
 Async/await is some syntactic sugar when working with promises to enhance readability.
 
 **Example(s) that demonstrate how to avoid the callback hell (“Pyramid of Doom")**
 
+```js
+a(
+  function(resFromA) {
+    b(
+      resFromA,
+      function(resFromB) {
+        c(
+          rseFromB,
+          function(resFromC) {
+            d(resFromC, function(resFromD) {} /* do d logic) */);
+          } /* do c logic) */
+        );
+      } /* do b logic) */
+    );
+  } /* do a logic) */
+);
+```
+
+Callback hell occurs because in JavaScript the only way to delay a computation so that it runs after the asynchronous call returns is to put the delayed code inside a callback function. You cannot delay code that was written in traditional synchronous style.
+
 **Example(s) that demonstrate how to execute asynchronous (promise-based) code in serial or parallel**
+
+A good way to run promises sequential is to use the Array.reduce method.
+It's found that the reason reduce() works is because we're able to return something right back to our same callback (namely, a promise), which we can then build upon by having it resolve into another promise. With all of these other methods, however, we just can't pass an argument to our callback that was returned from our callback. Instead, each of those callback arguments are predetermined, making it impossible for us to leverage them for something like sequential promise resolution.
+
+```js
+let userIDs = [1, 2, 3];
+
+userIDs.reduce(async (previousPromise, nextID) => {
+  await previousPromise;
+  return methodThatReturnsAPromise(nextID);
+}, Promise.resolve());
+```
+
+A more dirty solution could be to chain promises inside each other.
+
+```js
+new Promise((resolve, reject) => {
+  // Promise #1
+
+  resolve();
+})
+  .then(result => {
+    // Promise #2
+
+    return result;
+  })
+  .then(result => {
+    // Promise #3
+
+    return result;
+  });
+```
+
+to run Promises in parallel you do not chain them.
 
 **Example(s) that demonstrate how to implement our own promise-solutions.**
 
-**Example(s) that demonstrate error handling with promises**
+```js
+let myPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("resolved!");
+  }, 1500);
+});
+
+(function() {
+  myPromise.then((res, err) => {
+    console.log(res);
+  });
+})();
+```
 
 **Explain about JavaScripts async/await, how it relates to promises and reasons to use it compared to the plain promise API.**
+The word “async” before a function means one simple thing: a function always returns a promise. Even If a function actually returns a non-promise value, prepending the function definition with the “async” keyword directs Javascript to automatically wrap that value in a resolved promise.
+
+The keyword await makes JavaScript wait until that promise settles and returns its result.
+
+Here’s an example with a promise that resolves in 1 second:
+
+```js
+async function f() {
+  let promise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("done!"), 1000);
+  });
+
+  let result = await promise; // wait till the promise resolves (*)
+
+  alert(result); // "done!"
+}
+
+f();
+```
