@@ -208,25 +208,188 @@ exports.default = function getSquard(num) {
 };
 ```
 
+Above a function is exported for later use, and below it is imported in another file
+
+```js
+let getSquared = require("./file");
+
+console.log(getSquared(3)); //= 9
+```
+
 ### ES6,7,8... and TypeScript
 
 Provide examples and explain the es2015 features: let, arrow functions, this, rest parameters, de-structuring assignments, maps/sets etc.
 
 **Explain and demonstrate how es2015 supports modules (import and export) similar to what is offered by NodeJS.**
+import and export is keywords used to handle modules in a JavaScript environment
+export:
+
+```js
+function shout() {
+  console.log("AAaarg!!");
+}
+
+function printWord(word) {
+  console.log(word);
+}
+
+export { shout, printWord };
+```
+
+import:
+
+```js
+import * as imported from "./export";
+
+imported.shout();
+imported.printWord("What's up");
+```
+
+can run in node with `--experimental-modules my-app.mjs`
+Or you can use the native node way, and use the module object to handle modules.
+export:
+
+```js
+function shout() {
+  console.log("AAaarg!!");
+}
+
+function printWord(word) {
+  console.log(word);
+}
+```
+
+import:
+
+```js
+module.exports = { shout, printWord };
+
+let imported = require("./export");
+
+imported.shout();
+imported.printWord("What's up");
+```
 
 **Provide an example of ES6 inheritance and reflect over the differences between Inheritance in Java and in ES6.**
 
-Provide examples with es-next, running in a browser, using Babel and Webpack
+ES6 provided keywords like `class`, `constructor` and `super`, which are syntactic sugar to mimic object-based design.
+
+```js
+class Vehicle {
+  constructor(name, type) {
+    this.name = name;
+    this.type = type;
+  }
+
+  getName() {
+    return this.name;
+  }
+
+  getType() {
+    return this.type;
+  }
+}
+class Car extends Vehicle {
+  constructor(name) {
+    super(name, "car");
+  }
+
+  getName() {
+    return "It is a car: " + super.getName();
+  }
+}
+```
+
+The equivelant pre ES6 using the prototype-based design
+
+```js
+function Vehicle (name, type) {
+  this.name = name;
+  this.type = type;
+};
+
+Vehicle.prototype.getName = function getName () {
+  return this.name;
+};
+
+Vehicle.prototype.getType = function getType () {
+  return this.type;
+};
+function Car (name) {
+  Vehicle.call(this, name, ‘car’);
+}
+Car.prototype = Object.create(Vehicle.prototype);
+Car.prototype.constructor = Car;
+Car.parent = Vehicle.prototype;
+Car.prototype.getName = function () {
+  return 'It is a car: '+ this.name;
+};
+```
 
 **Provide a number of examples to demonstrate the benefits of using TypeScript, including, types, interfaces, classes and generics**
+Some benefits of typescript:
+
+- code-completion
+- transpiling to earlier .js versions
+- option for static typing
+- type inference
+
+All of these benefits make for a very different environment. TypeScript is used for projects with large code-bases, but can be used for any project.
+
+In TypeScript, interfaces are used for type-checking, and classes are used for object creation.
+
+```js
+interface Vehicle {
+  type: string;
+}
+
+class Car implements Vehicle {
+  type: String;
+  constructor(type: String) {
+    this.type = type;
+  }
+  drive(): void {
+    console.log(`Vrrrum!" + ${this.type}`);
+  }
+}
+
+const fabia = new Car("Skoda Fabia");
+fabia.drive();
+```
+
+TypeScript supports the use of generics, not to be confused with the keyword `any`.
+
+```js
+function identity(arg: number): number {
+  return arg;
+}
+```
+
+While using any is certainly generic in that it will cause the function to accept any and all types for the type of arg, we actually are losing the information about what that type was when the function returns.
+
+```js
+function identity<T>(arg: T): T {
+  return arg;
+}
+```
+
+Instead, we need a way of capturing the type of the argument in such a way that we can also use it to denote what is being returned. Here, we can use a type variable, a special kind of variable that works on types rather than values.
 
 **Explain the ECMAScript Proposal Process for how new features are added to the language (the TC39 Process)**
 
----
+1. Strawman
+2. Proposal
+3. Draft
+4. Candidate
+5. Finished
 
 ### Callbacks, Promises and async/await
 
-Explain about promises in ES-6 including, the problems they solve, a quick explanation of the Promise API and:
+Callbacks can refer to two phenomena. Either it is simply when a funtion take in another function as a parameter(callback), or it could be used in a more specific context meaning a function passed into another function performing an asynchronous operation where the callback function defines what to do after the asynchronous operation is finished.
+
+A Promise object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value.
+
+Async/await is some syntactic sugar when working with promises to enhance readability.
 
 **Example(s) that demonstrate how to avoid the callback hell (“Pyramid of Doom")**
 
